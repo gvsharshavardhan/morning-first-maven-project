@@ -1,0 +1,4 @@
+pom important points:
+--------------------
+1. For each webpage you should create a separate page class.
+2. the method which is taking us to other page is responsible to give us the object of that page.
