@@ -2,9 +2,10 @@ package pages;
 
 import driver.DriverFactory;
 import org.openqa.selenium.By;
+import utilities.PropertiesUtil;
 
 public class LoginPage {
-    String LOGIN_PAGE_URL = "https://opensource-demo.orangehrmlive.com/index.php/auth/login";
+    String LOGIN_PAGE_URL = PropertiesUtil.getValueOfProperty("url");
     String CREDENTIALS_TEXT_XPATH = "//span[text()='( Username : Admin | Password : admin123 )']";
     String INPUT_FIELD_CSS_SELECTOR = "input[name='txtUsername']";
     String PASSWORD_FIELD_CSS_SELECTOR = "input[name='txtPassword']";
