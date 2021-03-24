@@ -1,7 +1,9 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+package pages;
 
-public class LoginPage extends BasePage {
+import driver.DriverFactory;
+import org.openqa.selenium.By;
+
+public class LoginPage {
     String LOGIN_PAGE_URL = "https://opensource-demo.orangehrmlive.com/index.php/auth/login";
     String CREDENTIALS_TEXT_XPATH = "//span[text()='( Username : Admin | Password : admin123 )']";
     String INPUT_FIELD_CSS_SELECTOR = "input[name='txtUsername']";
@@ -9,16 +11,16 @@ public class LoginPage extends BasePage {
     String LOGIN_BUTTON_CSS_SELECTOR = "input[type='submit']";
     String FORGOT_PASSOWORD_LINK_TEXT = "Forgot your password?";
 
-    LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage() {
+        super();
     }
 
     public void goToOrangeLoginPage() {
-        driver.get(LOGIN_PAGE_URL);
+        DriverFactory.getDriver().get(LOGIN_PAGE_URL);
     }
 
     private String getCredentialsFromCredentialText() {
-        return driver.findElement(By.xpath(CREDENTIALS_TEXT_XPATH)).getText().trim();
+        return DriverFactory.getDriver().findElement(By.xpath(CREDENTIALS_TEXT_XPATH)).getText().trim();
     }
 
     public String getUserName() {
@@ -30,19 +32,19 @@ public class LoginPage extends BasePage {
     }
 
     public void enterUserName(String userName) {
-        driver.findElement(By.cssSelector(INPUT_FIELD_CSS_SELECTOR)).sendKeys(userName);
+        DriverFactory.getDriver().findElement(By.cssSelector(INPUT_FIELD_CSS_SELECTOR)).sendKeys(userName);
     }
 
     public void enterPassword(String password) {
-        driver.findElement(By.cssSelector(PASSWORD_FIELD_CSS_SELECTOR)).sendKeys(password);
+        DriverFactory.getDriver().findElement(By.cssSelector(PASSWORD_FIELD_CSS_SELECTOR)).sendKeys(password);
     }
 
     public DashBoardPage clickLogin() {
-        driver.findElement(By.cssSelector(LOGIN_BUTTON_CSS_SELECTOR)).click();
-        return new DashBoardPage(driver);
+        DriverFactory.getDriver().findElement(By.cssSelector(LOGIN_BUTTON_CSS_SELECTOR)).click();
+        return new DashBoardPage(DriverFactory.getDriver());
     }
 
     public void clickForgetPassword() {
-        driver.findElement(By.linkText(FORGOT_PASSOWORD_LINK_TEXT)).click();
+        DriverFactory.getDriver().findElement(By.linkText(FORGOT_PASSOWORD_LINK_TEXT)).click();
     }
 }

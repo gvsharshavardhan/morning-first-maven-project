@@ -1,24 +1,22 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
+package tests;
+
+import driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 
 public class BaseTest {
-    WebDriver driver;
     public SoftAssert sa = new SoftAssert();
 
     @BeforeMethod
     public void openBrowser() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        DriverFactory.initializeDriver();
     }
 
     @AfterMethod
     public void quitBrowser() {
-        driver.quit();
+        DriverFactory.quitDriver();
     }
 
     public void sleep(int seconds) {
